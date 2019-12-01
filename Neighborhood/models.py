@@ -79,4 +79,19 @@ class Post(models.Model):
         self.save()
 
     def delete_post(self):
-        self.delete()    
+        self.delete()
+class ContactInfo(models.Model):
+    health_department = models.CharField(max_length=200)
+    police_department = models.CharField(max_length=200)
+    hood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return self.health_department
+
+    def save_contact(self):
+        self.save()
+
+    def delete_contact(self):
+        self.delete()
+
+    
