@@ -1,0 +1,12 @@
+body {
+    background-image: url(/static/images/doodles.png)
+}
+
+.heading {
+font-family: 'Allerta Stencil', sans-serif;
+font-size: 27px;
+}
+
+.reg {
+    background-color: #B5DBF3;
+}
