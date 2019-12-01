@@ -62,4 +62,21 @@ class Business(models.Model):
     def search_business(cls,biz_id):
         business = cls.objects.get(id=biz_id)
         return business 
-    
+class Post(models.Model):
+    post_picture = models.ImageField(upload_to='posts/',blank=True)
+    post_name = models.CharField(max_length=200)
+    post_description = models.TextField()
+    date_posted = models.DateField(auto_now=True)
+    post_owner = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    hood_post = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
+    def __str__(self):
+        return self.post_name
+
+    class Meta:
+        ordering = ['-id']
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()    
