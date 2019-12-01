@@ -36,3 +36,30 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
+class Business(models.Model):
+    business_name = models.CharField(max_length=200)
+    business_email = models.EmailField()
+    business_owner = models.ForeignKey(User,on_delete=models.CASCADE)
+    business_hood_id = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
+
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.business_name
+
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+    
+    @classmethod
+    def search_business_by_title(cls,search_term):
+        post = cls.objects.filter(business_name__icontains=search_term)
+        return post    
+    @classmethod
+    def search_business(cls,biz_id):
+        business = cls.objects.get(id=biz_id)
+        return business 
+    
