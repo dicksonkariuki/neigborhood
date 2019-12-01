@@ -76,5 +76,53 @@ def new_business(request):
         form = BusinessForm()
     return render(request,"business/business_form.html",{"form":form})
 
+@login_required(login_url='/accounts/login/')
+def business(request):
+    current_user = request.user
+    try:
+        profile = Profile.objects.filter(prof_user=request.user)
+        arr=[]
+        for business in profile:
+            arr.append(business.hood_id.id)
+        if len(arr)>0:
+            id=arr[0]
+            all_businesses = Business.objects.filter(business_hood_id=id)
+        else:
+            all_businesses = Business.objects.filter(business_hood_id=10000000000)
+    except Exception as e:
+        raise Http404()
+     
+    return render(request,'business/business_index.html',{"all_businesses":all_businesses,"profile":profile})
+def search_post(request):
+    if 'post' in request.GET and request.GET ["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Business.search_business_by_title(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search/search.html', {"message":message, "post":searched_posts})
+
+    else:
+        message = "No search results yet!"
+        return render (request, 'search/search.html', {"message": message})
+
+@login_required(login_url='/accounts/login/')
+def contact(request):
+    contacts = ContactInfo.objects.all()
+    return render(request,'hood_app/contact_info.html',{"contacts":contacts})
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.post_owner = current_user
+            post.save()
+        return redirect('home')
+    else:
+        form = PostForm()
+    return render(request,"posts/create_post.html",{"form":form})
+
 
 # Create your views here.
