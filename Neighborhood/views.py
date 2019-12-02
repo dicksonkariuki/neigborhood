@@ -20,7 +20,7 @@ def home(request):
     else:
         all_posts = ""       
 
-    return render(request,'hood_app/index.html',{"all_posts":all_posts,"prof_info":profile,"hoodie":hoodie})
+    return render(request,'Neigborhood/index.html',{"all_posts":all_posts,"prof_info":profile,"hoodie":hoodie})
 
 @login_required(login_url='/accounts/login/')
 def new_profile(request):
@@ -108,7 +108,7 @@ def search_post(request):
 @login_required(login_url='/accounts/login/')
 def contact(request):
     contacts = ContactInfo.objects.all()
-    return render(request,'hood_app/contact_info.html',{"contacts":contacts})
+    return render(request,'Neigborhood/contact_info.html',{"contacts":contacts})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):

@@ -7,7 +7,7 @@ class Neighborhood(models.Model):
     occupants = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.hood_name
+        return f"{self.hood_location}"
 
     def save_hood(self):
         self.save()
@@ -30,7 +30,7 @@ class Profile(models.Model):
     hood_id = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.prof_user
+        return f"{self.prof_user}"
 
     def save_profile(self):
         self.save()
@@ -47,7 +47,7 @@ class Business(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.business_name
+        return f"{self.business_name}"
 
     def save_business(self):
         self.save()
@@ -70,8 +70,9 @@ class Post(models.Model):
     date_posted = models.DateField(auto_now=True)
     post_owner = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     hood_post = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
+    
     def __str__(self):
-        return self.post_name
+        return f"{self.post_name}"
 
     class Meta:
         ordering = ['-id']
@@ -87,12 +88,11 @@ class ContactInfo(models.Model):
     hood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.health_department
+        return f"{self.health_department}"
 
     def save_contact(self):
         self.save()
 
     def delete_contact(self):
-        self.delete()
-
+        self.delete()   
     
