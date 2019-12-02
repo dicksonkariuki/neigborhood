@@ -108,8 +108,9 @@ def search_post(request):
 
 @login_required(login_url='/accounts/login/')
 def contact(request):
-    contacts = ContactInfo.objects.all()
-    return render(request,'Neigborhood/contact_info.html',{"contacts":contacts})
+    # contacts = ContactInfo.objects.all()
+    all_contact = ContactInfo.objects.all()
+    return render(request,'Neigborhood/contact_info.html',{"contact":contact})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
