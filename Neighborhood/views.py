@@ -16,7 +16,8 @@ def home(request):
         arr.append(post.hood_id.id)
     if len(arr)>0:
         id=arr[0]
-        all_posts = Post.objects.filter(hood_post=id)
+        all_posts = Post.objects.all()
+        
     else:
         all_posts = ""       
 
