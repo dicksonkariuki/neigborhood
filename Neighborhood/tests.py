@@ -22,3 +22,9 @@ class NeighborhoodTestClass(TestCase):
         self.hoods.save_hood()
         neighborhood=Neighborhood.search_neighbourhood(1)
         self.assertTrue(neighborhood.hood_name,"runda")
+    def test_update_hood(self):
+        self.hoods.save_hood()
+        neighborhood=Neighborhood.search_neighbourhood(1)
+        neighborhood.hoods="syokimau"
+        self.assertTrue(neighborhood.hood_name,"syokimau")
+
