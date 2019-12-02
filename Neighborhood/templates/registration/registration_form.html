@@ -2,16 +2,13 @@
 {% block content %}
 <div class="container-fluid authen">
     <div class="row">
-        <!-- Empty div -->
-        <div class="col-md-4">
-            <img src="/static/images/house7.jpg" alt="No Image" style="height:400px;width:400px;margin-top:25px;">
-        </div>
         <div class="col-md-4" style="margin-top:20px;">
             {% if form.errors %}
             <p> Some Information Might be Incorrect </p>
             {% endif %}
             <div class="card card-default reg">
 
+                <div class ="col-md-6">
                 <div class="card-heading">
                     <h3 class="text-center heading">Sign Up</h3>
                 </div>
@@ -30,6 +27,7 @@
 
                 </div>
 
+            </div>
             </div>
             <div class="card-body">
                 Have an account? <a href="/accounts/login/">Log in</a>
