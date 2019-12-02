@@ -87,7 +87,7 @@ def business(request):
             arr.append(business.hood_id.id)
         if len(arr)>0:
             id=arr[0]
-            all_businesses = Business.objects.filter(business_hood_id=id)
+            all_businesses = Business.objects.all()
         else:
             all_businesses = Business.objects.filter(business_hood_id=10000000000)
     except Exception as e:
