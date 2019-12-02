@@ -18,3 +18,7 @@ class NeighborhoodTestClass(TestCase):
         self.hoods.delete_hood()
         hoods=Neighborhood.objects.all()
         self.assertTrue(len(hoods)==0)
+    def test_search_neighborhood(self):
+        self.hoods.save_hood()
+        neighborhood=Neighborhood.search_neighbourhood(1)
+        self.assertTrue(neighborhood.hood_name,"runda")
